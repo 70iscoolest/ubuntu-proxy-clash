@@ -1,19 +1,20 @@
 官网和网上其他教程不清不楚的，浪费我好几个小时！！！
 特此记录一下
+---
+**更新说明**
+第一次配置成功后，由于没有正确退出clash,第二次启动后完全失效！！！
+问题说明及解决办法见第五个坑
 
 # 1. 下载客户端
 
  1. 创建`clash`文件夹以存放后面所需的所有文件
- 
- 	终端执行(用户目录下)
-	```
-	cd && mkdir clash
-	```
-	在*用户目录*下创建**clash**文件夹
- 2. [下载Clash二进制文件](https://github.com/Dreamacro/clash/releases)
+    > 更新注：建议放在`/usr/loal/bin`目录下，可以在全局任意目录执行`clash`
+
+
+ 3. [下载Clash二进制文件](https://github.com/Dreamacro/clash/releases)
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/d04292718a244ffe8619883fe5f637a3.png)
 个人64位电脑下载**clash-linux-amd64-v1.16.0.gz**即可
-3. 将其解压缩并重命名为clash
+4. 将其解压缩并重命名为clash
 	
 
 # 2.  下载clash配置文件
@@ -65,4 +66,6 @@ networkproxy改为手动，参照`config.yml`文件内容如图配置：
 
 用acccmip6下载数据简直起飞
 ![Screenshot from 2023-06-21 10-58-36](https://github.com/70iscoolest/ubuntu-proxy-clash/assets/91779073/76dcdc32-f5f6-4158-8492-c80fcc15170b)
+
+---------------------------------------------------------------------------------------------------------------------------------------------
 
