@@ -62,3 +62,7 @@ networkproxy改为手动，参照`config.yml`文件内容如图配置：
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/b4fa45ba28db450c9edaa5d7ba23316c.png)
 
 > **至此成功！**
+
+用acccmip6下载数据简直起飞
+![Screenshot from 2023-06-21 10-58-36](https://github.com/70iscoolest/ubuntu-proxy-clash/assets/91779073/76dcdc32-f5f6-4158-8492-c80fcc15170b)
+
