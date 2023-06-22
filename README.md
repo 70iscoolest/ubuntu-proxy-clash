@@ -1,13 +1,13 @@
 官网和网上其他教程不清不楚的，浪费我好几个小时！！！
 特此记录一下
 ---
-**更新说明**
+**更新说明**</p>
 第一次配置成功后，由于没有正确退出clash,第二次启动后完全失效！！！
-问题说明及解决办法见第五个坑
+问题说明及解决办法见[第二次更新](#u2)
 
 # 1. 下载客户端
 
- 1. ~~[创建`clash`文件夹以存放后面所需的所有文件]~~
+ 1. ~~创建`clash`文件夹以存放后面所需的所有文件~~
     > 更新注：建议将以下文件存放在`/usr/loal/bin`目录下，这样可以在全局任意目录执行`clash`
 
  2. [下载Clash二进制文件](https://github.com/Dreamacro/clash/releases)
@@ -72,8 +72,8 @@ networkproxy改为手动，参照`config.yml`文件内容如图配置：
 ![Screenshot from 2023-06-21 10-58-36](https://github.com/70iscoolest/ubuntu-proxy-clash/assets/91779073/76dcdc32-f5f6-4158-8492-c80fcc15170b)
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
-
-我以为这就成功了，结果第二次打开`clash`，连接不了外网，傻眼了，网上找遍了也试遍了，完全不知道为啥。
+# <div id="u2">更新<div>
+我以为这就成功了，结果第二次打开`clash`，连接不了外网，网上找遍了也试遍了，完全不知道为啥。
 
 又搞了一天👺👺👺，终于解决了：
 
@@ -99,16 +99,19 @@ networkproxy改为手动，参照`config.yml`文件内容如图配置：
 4. 再修改`confi.yaml`文件中的`log-level=debug`，重新启动`clash`，让终端输出错误信息
 ![](./pics/debug.png)
 
-- 第一个错误：`Start HTTP server error: listen tcp :7890: bind: address already in use`
+- <div id="u1">第一个错误：<div></p>
+- `Start HTTP server error: listen tcp :7890: bind: address already in use`
   > 解决办法：
-  > 1. 打开另外的终端输入`sudo lsof -i tcp:7890`查看哪些进程占用这个端口
+  > 1. 打开另外的终端输入`sudo lsof -i tcp:7890`, 查看哪些进程占用这个端口
   ![](./pics/portinuse.png)
   这一看不得了，怎么会有这么多进程占用这个端口？
   > 2. 输入`sudo kill -9 XXXX #PID`杀死这些进程
+</p>
 
 - 第二个错误: `WARN[0000] Failed to start Redir UDP Listener: operation not permitted`
   > 解决办法：
   > 输入`sudo setcap cap_net_bind_service,cap_net_admin+ep /path/to/clash`
+</p>
 
 - 第三个错误:`ERRO[0000] Start Redir server error: operation not permitted'
   > 不太确定这是什么问题，好像在输入了上面一个语句之后，这个问题就消失了
@@ -120,6 +123,24 @@ networkproxy改为手动，参照`config.yml`文件内容如图配置：
 
 # 终于解决！（希望这次是真的解决了👊）
 
+---
+# <div id="u3">第三次更新<div>
 
- 
+果然没有解决。
+
+第三次启动，发现还是不成功。
+
+改为`log-level=debug`，重新启动`clash`，让终端输出错误信息，是[第一个错误](#u1)的问题，有其它程序占用端口。
+
+打开另外的终端输入`sudo lsof -i tcp:7890`, 查看哪些进程占用这个端口
+
+一个是roor用户下的clash，一个是打开的chrome浏览器。
+
+很奇怪，为什么会有一个root用户下的clash，输入`whereis clash`
+
+发现竟然在`etc/clash`目录下有clash的配置文件，这就很疑惑，clash自动在该目录下生成文件？就是它占用了端口
+
+手动删除后，再次启动clash,便没有问题。
+
+但是这个需要每次手动删除这个目录下的clash配置文件，不知道如何彻底解决这个问题。
 
